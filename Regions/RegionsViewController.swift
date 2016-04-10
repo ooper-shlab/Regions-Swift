@@ -6,51 +6,11 @@
 //
 //
 /*
-     File: RegionsViewController.h
-     File: RegionsViewController.m
- Abstract: This controller manages the CLLocationManager for location updates and switches the interface between showing the region map and the updates table list. This controller also manages adding and removing regions to be monitored by the application.
-  Version: 1.1
+ Copyright (C) 2016 Apple Inc. All Rights Reserved.
+ See LICENSE.txt for this sample’s licensing information
 
- Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
- Inc. ("Apple") in consideration of your agreement to the following
- terms, and your use, installation, modification or redistribution of
- this Apple software constitutes acceptance of these terms.  If you do
- not agree with these terms, please do not use, install, modify or
- redistribute this Apple software.
-
- In consideration of your agreement to abide by the following terms, and
- subject to these terms, Apple grants you a personal, non-exclusive
- license, under Apple's copyrights in this original Apple software (the
- "Apple Software"), to use, reproduce, modify and redistribute the Apple
- Software, with or without modifications, in source and/or binary forms;
- provided that if you redistribute the Apple Software in its entirety and
- without modifications, you must retain this notice and the following
- text and disclaimers in all such redistributions of the Apple Software.
- Neither the name, trademarks, service marks or logos of Apple Inc. may
- be used to endorse or promote products derived from the Apple Software
- without specific prior written permission from Apple.  Except as
- expressly stated in this notice, no other rights or licenses, express or
- implied, are granted by Apple herein, including but not limited to any
- patent rights that may be infringed by your derivative works or by other
- works in which the Apple Software may be incorporated.
-
- The Apple Software is provided by Apple on an "AS IS" basis.  APPLE
- MAKES NO WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION
- THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS
- FOR A PARTICULAR PURPOSE, REGARDING THE APPLE SOFTWARE OR ITS USE AND
- OPERATION ALONE OR IN COMBINATION WITH YOUR PRODUCTS.
-
- IN NO EVENT SHALL APPLE BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL
- OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE, REPRODUCTION,
- MODIFICATION AND/OR DISTRIBUTION OF THE APPLE SOFTWARE, HOWEVER CAUSED
- AND WHETHER UNDER THEORY OF CONTRACT, TORT (INCLUDING NEGLIGENCE),
- STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
- POSSIBILITY OF SUCH DAMAGE.
-
- Copyright (C) 2011 Apple Inc. All Rights Reserved.
-
+ Abstract:
+ This controller displays the map and allows the user to set regions to monitor.
  */
 
 import UIKit
@@ -60,11 +20,13 @@ import CoreLocation
 @objc(RegionsViewController)
 class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, UINavigationBarDelegate {
     
-    @IBOutlet var regionsMapView: MKMapView!
     @IBOutlet var updatesTableView: UITableView!
-    var updateEvents: [String] = []
     var locationManager: CLLocationManager!
-    @IBOutlet var navigationBar: UINavigationBar!
+    
+    @IBOutlet private weak var regionsMapView: MKMapView!
+    @IBOutlet private weak var navigationBar: UINavigationBar!
+    
+    private var updateEvents: [String] = []
     
     //MARK: - Memory management
     
@@ -85,27 +47,78 @@ class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Create empty array to add region events to.
         updateEvents = []
         
-        // Create location manager with filters set for battery efficiency.
+        // Create location manager early, so we can check and ask for location services authorization.
         locationManager = CLLocationManager()
+        // Configure the location manager.
         locationManager.delegate = self
         locationManager.distanceFilter = kCLLocationAccuracyHundredMeters
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        if #available(iOS 8.0, *) {
-            if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
-                locationManager.requestAlwaysAuthorization()
+        // Define a weak self reference.
+        
+        // Subscribe to app state change notifications, so we can stop/start location services.
+        
+        // When our app is interrupted, stop the standard location service,
+        // and start significant location change service, if available.
+        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillResignActiveNotification, object: nil, queue: nil) {[weak self] note in
+            if CLLocationManager.significantLocationChangeMonitoringAvailable() {
+                // Stop normal location updates and start significant location change updates for battery efficiency.
+                self?.locationManager.stopUpdatingLocation()
+                self?.locationManager.startMonitoringSignificantLocationChanges()
             } else {
-                locationManager.startUpdatingLocation()
+                NSLog("Significant location change monitoring is not available.")
             }
-        } else {
+        }
+        
+        // Stop the significant location change service, if available,
+        // and start the standard location service.
+        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue:nil) {[weak self] note in
+            if CLLocationManager.significantLocationChangeMonitoringAvailable() {
+                // Stop significant location updates and start normal location updates again since the app is in the forefront.
+                self?.locationManager.stopMonitoringSignificantLocationChanges()
+                self?.locationManager.startUpdatingLocation()
+            } else {
+                NSLog("Significant location change monitoring is not available.")
+            }
             
-            // Start updating location changes.
-            locationManager.startUpdatingLocation()
+            if !(self?.updatesTableView.hidden ?? false) {
+                // Reload the updates table view to reflect update events that were recorded in the background.
+                self?.updatesTableView.reloadData()
+                
+                // Reset the icon badge number to zero.
+                UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+            }
         }
     }
     
     
     override func viewDidAppear(animated: Bool) {
+        
+        // Request always allowed location service authorization.
+        // This is done here, so we can display an alert if the user has denied location services previously
+        
+        if CLLocationManager.authorizationStatus() == .NotDetermined {
+            // If status is not determined, then we should ask for authorization.
+            self.locationManager.requestAlwaysAuthorization()
+        } else if CLLocationManager.authorizationStatus() == .Denied {
+            // If authorization has been denied previously, inform the user.
+            NSLog("%s: location services authorization was previously denied by the user.", #function);
+            
+            // Display alert to the user.
+            let alert = UIAlertController(title: "Location services", message: "Location services were previously denied by the user. Please enable location services for this app in settings.", preferredStyle: .Alert)
+            let defaultAction = UIAlertAction(title: "Dismiss", style: .Default,
+                                              handler: {action in}) // Do nothing action to dismiss the alert.
+            
+            alert.addAction(defaultAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else { // We do have authorization.
+            // Start the standard location service.
+            self.locationManager.startUpdatingLocation()
+        }
+        
+        // Set the map's user tracking mode.
+        self.regionsMapView.userTrackingMode = .None
+        
         // Get all regions being monitored for this application.
         let regions = locationManager.monitoredRegions
         
@@ -116,31 +129,19 @@ class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    
-    //- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    //    // Return YES for supported orientations
-    //    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    //}
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return .Portrait
-    }
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return .Portrait
-    }
-    
-    
     //MARK: - UITableViewDelegate
     
+    // Return the number of section, which is one.
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    
+    // Return the number of rows in the one and only section.
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return updateEvents.count
     }
     
-    
+    // Dequeue and return a table view cell to be displayed in the table view.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
@@ -149,14 +150,14 @@ class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
         }
         
-        cell!.textLabel!.font = UIFont.systemFontOfSize(12.0)
+        cell!.textLabel!.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         cell!.textLabel!.text = updateEvents[indexPath.row]
         cell!.textLabel!.numberOfLines = 4
         
         return cell!
     }
     
-    
+    // Return the height we want for the table view cells.
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 60.0
     }
@@ -193,7 +194,7 @@ class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewD
         return nil
     }
     
-    
+    // Return the map overlay that depicts the region.
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKCircle {
             // Create the view for the radius overlay.
@@ -207,7 +208,7 @@ class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewD
         fatalError("overlay needs to be an MKCircle")
     }
     
-    
+    // Enable the user to reposition the pins representing the regions by dragging them.
     func mapView(mapView: MKMapView, annotationView: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
         guard let regionView = annotationView as? RegionAnnotationView else {
             return
@@ -225,14 +226,17 @@ class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewD
         if oldState == .Dragging && newState == .Ending {
             regionView.updateRadiusOverlay()
             
-            let newRegion = CLCircularRegion(center: regionAnnotation.coordinate, radius: 1000.0, identifier: String(format: "%f, %f", regionAnnotation.coordinate.latitude, regionAnnotation.coordinate.longitude))
+            let newRegion = CLCircularRegion(center: regionAnnotation.coordinate,
+                                             radius: 1000.0,
+                                             identifier: String(format: "%f, %f", regionAnnotation.coordinate.latitude, regionAnnotation.coordinate.longitude))
+            
             regionAnnotation.region = newRegion
             
             locationManager.startMonitoringForRegion(regionAnnotation.region!)
         }
     }
     
-    
+    // The X was tapped on a region annotation, so remove that region form the map, and stop monitoring that region.
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let regionView = view as! RegionAnnotationView
         let regionAnnotation = regionView.annotation as! RegionAnnotation
@@ -246,11 +250,22 @@ class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //MARK: - CLLocationManagerDelegate
     
+    // When the user has granted authorization, start the standard location service.
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        
+        if status == .AuthorizedWhenInUse
+            || status == .AuthorizedAlways {
+            // Start the standard location service.
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    // A core location error occurred.
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         NSLog("didFailWithError: %@", error)
     }
     
-    
+    // The system delivered a new location.
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last!
         let oldLocation: CLLocation? = locations.count > 1 ? locations[locations.count - 2] : nil
@@ -264,47 +279,38 @@ class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    
+    // The device entered a monitored region.
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
         let event = String(format: "didEnterRegion %@ at %@", region.identifier, NSDate())
+        NSLog("%@ %@", #function, event)
         
         self.updateWithEvent(event)
     }
     
-    
+    // The device exited a monitored region.
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         let event = String(format: "didExitRegion %@ at %@", region.identifier, NSDate())
+        NSLog("%@ %@", #function, event)
         
         self.updateWithEvent(event)
     }
     
-    
+    // A monitoring error occurred for a region.
     func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
         let event = String(format: "monitoringDidFailForRegion %@: %@", region!.identifier, error)
+        NSLog("%@ %@", #function, event)
         
         self.updateWithEvent(event)
         
-    }
-    
-    //###
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if #available(iOS 8.0, *) {
-            if status == .AuthorizedAlways {
-                locationManager.startUpdatingLocation()
-            } else {
-                //TODO: Show info for user
-                NSLog("This sample app needs to access location authorization")
-            }
-        }
     }
     
     
     //MARK: - RegionsViewController
     
     /*
-    This method swaps the visibility of the map view and the table of region events.
-    The "add region" button in the navigation bar is also altered to only be enabled when the map is shown.
-    */
+     This method swaps the visible view between the map view and the table of region events.
+     The "add region" button in the navigation bar is also altered to only be enabled when the map is shown.
+     */
     @IBAction func switchViews() {
         // Swap the hidden status of the map and table view so that the appropriate one is now showing.
         self.regionsMapView.hidden = !self.regionsMapView.hidden
@@ -322,9 +328,9 @@ class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     /*
-    This method creates a new region based on the center coordinate of the map view.
-    A new annotation is created to represent the region and then the application starts monitoring the new region.
-    */
+     This method creates a new region based on the center coordinate of the map view.
+     A new annotation is created to represent the region and then the application starts monitoring the new region.
+     */
     @IBAction func addRegion() {
         guard CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion.self) else {
             NSLog("Region monitoring is not available.")
@@ -333,8 +339,10 @@ class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Create a new region based on the center of the map view.
         let coord = CLLocationCoordinate2DMake(regionsMapView.centerCoordinate.latitude, regionsMapView.centerCoordinate.longitude)
         let newRegion = CLCircularRegion(center: coord,
-            radius: 1000.0,
-            identifier: String(format: "%f, %f", regionsMapView.centerCoordinate.latitude, regionsMapView.centerCoordinate.longitude))
+                                         radius: 1000.0,
+                                         identifier: String(format: "%f, %f", regionsMapView.centerCoordinate.latitude, regionsMapView.centerCoordinate.longitude))
+        newRegion.notifyOnEntry = true
+        newRegion.notifyOnExit = true
         
         // Create an annotation to show where the region is located on the map.
         let myRegionAnnotation = RegionAnnotation(CLCircularRegion: newRegion)
@@ -344,21 +352,20 @@ class RegionsViewController: UIViewController, UITableViewDelegate, UITableViewD
         regionsMapView.addAnnotation(myRegionAnnotation)
         
         // Start monitoring the newly created region.
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringForRegion(newRegion)
         
     }
     
     
     /*
-    This method adds the region event to the events array and updates the icon badge number.
-    */
+     This method adds the region event to the events array and updates the icon badge number.
+     */
     func updateWithEvent(event: String) {
         // Add region event to the updates array.
         updateEvents.insert(event, atIndex: 0)
         
         // Update the icon badge number.
-        UIApplication.sharedApplication().applicationIconBadgeNumber++
+        UIApplication.sharedApplication().applicationIconBadgeNumber += 1
         
         if !updatesTableView.hidden {
             updatesTableView.reloadData()

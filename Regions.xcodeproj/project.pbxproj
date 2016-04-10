@@ -11,28 +11,15 @@
 		CBA9F15512F76264005BB61E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA9F15412F76264005BB61E /* Foundation.framework */; };
 		CBA9F15712F76264005BB61E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA9F15612F76264005BB61E /* CoreGraphics.framework */; };
 		CBA9F15D12F76264005BB61E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBA9F15B12F76264005BB61E /* InfoPlist.strings */; };
-		CBA9F16612F76264005BB61E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBA9F16412F76264005BB61E /* MainWindow.xib */; };
-		CBA9F16C12F76264005BB61E /* RegionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBA9F16A12F76264005BB61E /* RegionsViewController.xib */; };
 		CBA9F17312F7628B005BB61E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA9F17212F7628B005BB61E /* CoreLocation.framework */; };
-		CBBE14EB12F914B70065507D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CBBE14E112F914B70065507D /* Default.png */; };
-		CBBE14EC12F914B70065507D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CBBE14E212F914B70065507D /* Icon-72.png */; };
-		CBBE14ED12F914B70065507D /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = CBBE14E312F914B70065507D /* Icon-Small-50.png */; };
-		CBBE14EE12F914B70065507D /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = CBBE14E412F914B70065507D /* Icon-Small.png */; };
-		CBBE14EF12F914B70065507D /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBBE14E512F914B70065507D /* Icon-Small@2x.png */; };
-		CBBE14F012F914B70065507D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CBBE14E612F914B70065507D /* Icon.png */; };
-		CBBE14F112F914B70065507D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBBE14E712F914B70065507D /* Icon@2x.png */; };
-		CBBE14F212F914B70065507D /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = CBBE14E812F914B70065507D /* iTunesArtwork */; };
-		CBBE14F312F914B70065507D /* RemoveRegion.png in Resources */ = {isa = PBXBuildFile; fileRef = CBBE14E912F914B70065507D /* RemoveRegion.png */; };
-		CBBE14F412F914B70065507D /* RemoveRegion@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBBE14EA12F914B70065507D /* RemoveRegion@2x.png */; };
-		CBBE14F812F916EC0065507D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CBBE14F712F916EC0065507D /* Default@2x.png */; };
-		CBBF867312FB498900508BCE /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = CBBF867212FB498900508BCE /* ReadMe.txt */; };
-		D7D00D131BFA047B003E0FE6 /* RegionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D00D121BFA047B003E0FE6 /* RegionsViewController.swift */; };
-		D7D4B4771C016AFB0045FC53 /* RegionsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D4B4761C016AFB0045FC53 /* RegionsAppDelegate.swift */; };
-		D7D4B4791C0171CF0045FC53 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D4B4781C0171CF0045FC53 /* MapKit.framework */; };
-		D7D4B47B1C0172220045FC53 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D4B47A1C0172220045FC53 /* Default-568h@2x.png */; };
-		D7D4B47E1C0172570045FC53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D4B47C1C0172570045FC53 /* LaunchScreen.storyboard */; };
-		D7FA63CA1BF8E533008632FD /* RegionAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FA63C91BF8E533008632FD /* RegionAnnotation.swift */; };
-		D7FA63CC1BF8E829008632FD /* RegionAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FA63CB1BF8E829008632FD /* RegionAnnotationView.swift */; };
+		CBA9F17512F76292005BB61E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA9F17412F76292005BB61E /* MapKit.framework */; };
+		D7A140CB1CB1534B003CFD4B /* RegionAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A140C71CB1534B003CFD4B /* RegionAnnotation.swift */; };
+		D7A140CC1CB1534B003CFD4B /* RegionAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A140C81CB1534B003CFD4B /* RegionAnnotationView.swift */; };
+		D7A140CD1CB1534B003CFD4B /* RegionsAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A140C91CB1534B003CFD4B /* RegionsAppDelegate.swift */; };
+		D7A140CE1CB1534B003CFD4B /* RegionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A140CA1CB1534B003CFD4B /* RegionsViewController.swift */; };
+		E0064A4C1B6051EF001EA236 /* AssetCatalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0064A4B1B6051EF001EA236 /* AssetCatalog.xcassets */; };
+		E01AF0EB1B619146007A8B92 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E01AF0EA1B619146007A8B92 /* Launch.storyboard */; };
+		E0282BE11B0AA1AC00DFB605 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0282BE01B0AA1AC00DFB605 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,29 +29,18 @@
 		CBA9F15612F76264005BB61E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CBA9F15A12F76264005BB61E /* Regions-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Regions-Info.plist"; sourceTree = "<group>"; };
 		CBA9F15C12F76264005BB61E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CBA9F16512F76264005BB61E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		CBA9F16B12F76264005BB61E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RegionsViewController.xib; sourceTree = "<group>"; };
 		CBA9F17212F7628B005BB61E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		CBBE14E112F914B70065507D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Images/Default.png; sourceTree = "<group>"; };
-		CBBE14E212F914B70065507D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Images/Icon-72.png"; sourceTree = "<group>"; };
-		CBBE14E312F914B70065507D /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Images/Icon-Small-50.png"; sourceTree = "<group>"; };
-		CBBE14E412F914B70065507D /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "Images/Icon-Small.png"; sourceTree = "<group>"; };
-		CBBE14E512F914B70065507D /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "Images/Icon-Small@2x.png"; sourceTree = "<group>"; };
-		CBBE14E612F914B70065507D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Images/Icon.png; sourceTree = "<group>"; };
-		CBBE14E712F914B70065507D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Images/Icon@2x.png"; sourceTree = "<group>"; };
-		CBBE14E812F914B70065507D /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Images/iTunesArtwork; sourceTree = "<group>"; };
-		CBBE14E912F914B70065507D /* RemoveRegion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RemoveRegion.png; path = Images/RemoveRegion.png; sourceTree = "<group>"; };
-		CBBE14EA12F914B70065507D /* RemoveRegion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RemoveRegion@2x.png"; path = "Images/RemoveRegion@2x.png"; sourceTree = "<group>"; };
-		CBBE14F712F916EC0065507D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Images/Default@2x.png"; sourceTree = "<group>"; };
-		CBBF867212FB498900508BCE /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
-		D7D00D121BFA047B003E0FE6 /* RegionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionsViewController.swift; sourceTree = "<group>"; };
-		D7D4B4761C016AFB0045FC53 /* RegionsAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionsAppDelegate.swift; sourceTree = "<group>"; };
-		D7D4B4781C0171CF0045FC53 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		D7D4B47A1C0172220045FC53 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		D7D4B47D1C0172570045FC53 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D7D4B47F1C0179790045FC53 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D7FA63C91BF8E533008632FD /* RegionAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionAnnotation.swift; sourceTree = "<group>"; };
-		D7FA63CB1BF8E829008632FD /* RegionAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionAnnotationView.swift; sourceTree = "<group>"; };
+		CBA9F17412F76292005BB61E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D7A140C31CB152EC003CFD4B /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		D7A140C41CB152EC003CFD4B /* README2.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README2.md; sourceTree = "<group>"; };
+		D7A140C71CB1534B003CFD4B /* RegionAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionAnnotation.swift; sourceTree = "<group>"; };
+		D7A140C81CB1534B003CFD4B /* RegionAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionAnnotationView.swift; sourceTree = "<group>"; };
+		D7A140C91CB1534B003CFD4B /* RegionsAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionsAppDelegate.swift; sourceTree = "<group>"; };
+		D7A140CA1CB1534B003CFD4B /* RegionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionsViewController.swift; sourceTree = "<group>"; };
+		E0064A4B1B6051EF001EA236 /* AssetCatalog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AssetCatalog.xcassets; sourceTree = "<group>"; };
+		E01AF0EA1B619146007A8B92 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		E0282BE01B0AA1AC00DFB605 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E088A24C1BEE971500DB9234 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +48,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBA9F17512F76292005BB61E /* MapKit.framework in Frameworks */,
 				CBA9F17312F7628B005BB61E /* CoreLocation.framework in Frameworks */,
 				CBA9F15312F76264005BB61E /* UIKit.framework in Frameworks */,
-				D7D4B4791C0171CF0045FC53 /* MapKit.framework in Frameworks */,
 				CBA9F15512F76264005BB61E /* Foundation.framework in Frameworks */,
 				CBA9F15712F76264005BB61E /* CoreGraphics.framework in Frameworks */,
 			);
@@ -86,8 +62,9 @@
 		CBA9F14312F76263005BB61E = {
 			isa = PBXGroup;
 			children = (
-				D7D4B47F1C0179790045FC53 /* README.md */,
-				CBBF867212FB498900508BCE /* ReadMe.txt */,
+				D7A140C31CB152EC003CFD4B /* LICENSE.txt */,
+				E088A24C1BEE971500DB9234 /* ReadMe.md */,
+				D7A140C41CB152EC003CFD4B /* README2.md */,
 				CBA9F15812F76264005BB61E /* Regions */,
 				CBA9F15112F76264005BB61E /* Frameworks */,
 				CBA9F14F12F76264005BB61E /* Products */,
@@ -105,7 +82,7 @@
 		CBA9F15112F76264005BB61E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D7D4B4781C0171CF0045FC53 /* MapKit.framework */,
+				CBA9F17412F76292005BB61E /* MapKit.framework */,
 				CBA9F17212F7628B005BB61E /* CoreLocation.framework */,
 				CBA9F15212F76264005BB61E /* UIKit.framework */,
 				CBA9F15412F76264005BB61E /* Foundation.framework */,
@@ -117,12 +94,12 @@
 		CBA9F15812F76264005BB61E /* Regions */ = {
 			isa = PBXGroup;
 			children = (
-				D7D4B4761C016AFB0045FC53 /* RegionsAppDelegate.swift */,
-				CBA9F16412F76264005BB61E /* MainWindow.xib */,
-				D7D00D121BFA047B003E0FE6 /* RegionsViewController.swift */,
-				CBA9F16A12F76264005BB61E /* RegionsViewController.xib */,
-				D7FA63C91BF8E533008632FD /* RegionAnnotation.swift */,
-				D7FA63CB1BF8E829008632FD /* RegionAnnotationView.swift */,
+				D7A140C91CB1534B003CFD4B /* RegionsAppDelegate.swift */,
+				D7A140CA1CB1534B003CFD4B /* RegionsViewController.swift */,
+				D7A140C71CB1534B003CFD4B /* RegionAnnotation.swift */,
+				D7A140C81CB1534B003CFD4B /* RegionAnnotationView.swift */,
+				E0282BE01B0AA1AC00DFB605 /* Main.storyboard */,
+				E01AF0EA1B619146007A8B92 /* Launch.storyboard */,
 				CBA9F15912F76264005BB61E /* Supporting Files */,
 			);
 			path = Regions;
@@ -131,21 +108,9 @@
 		CBA9F15912F76264005BB61E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D7D4B47A1C0172220045FC53 /* Default-568h@2x.png */,
-				CBBE14E112F914B70065507D /* Default.png */,
-				CBBE14F712F916EC0065507D /* Default@2x.png */,
-				CBBE14E212F914B70065507D /* Icon-72.png */,
-				CBBE14E312F914B70065507D /* Icon-Small-50.png */,
-				CBBE14E412F914B70065507D /* Icon-Small.png */,
-				CBBE14E512F914B70065507D /* Icon-Small@2x.png */,
-				CBBE14E612F914B70065507D /* Icon.png */,
-				CBBE14E712F914B70065507D /* Icon@2x.png */,
-				CBBE14E812F914B70065507D /* iTunesArtwork */,
-				CBBE14E912F914B70065507D /* RemoveRegion.png */,
-				CBBE14EA12F914B70065507D /* RemoveRegion@2x.png */,
 				CBA9F15A12F76264005BB61E /* Regions-Info.plist */,
 				CBA9F15B12F76264005BB61E /* InfoPlist.strings */,
-				D7D4B47C1C0172570045FC53 /* LaunchScreen.storyboard */,
+				E0064A4B1B6051EF001EA236 /* AssetCatalog.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -176,18 +141,9 @@
 		CBA9F14512F76263005BB61E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Apple Inc.";
-				TargetAttributes = {
-					CBA9F14D12F76264005BB61E = {
-						SystemCapabilities = {
-							com.apple.Maps.iOS = {
-								enabled = 1;
-							};
-						};
-					};
-				};
 			};
 			buildConfigurationList = CBA9F14812F76263005BB61E /* Build configuration list for PBXProject "Regions" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -212,22 +168,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBA9F15D12F76264005BB61E /* InfoPlist.strings in Resources */,
-				CBA9F16612F76264005BB61E /* MainWindow.xib in Resources */,
-				CBA9F16C12F76264005BB61E /* RegionsViewController.xib in Resources */,
-				CBBE14EB12F914B70065507D /* Default.png in Resources */,
-				CBBE14EC12F914B70065507D /* Icon-72.png in Resources */,
-				CBBE14ED12F914B70065507D /* Icon-Small-50.png in Resources */,
-				CBBE14EE12F914B70065507D /* Icon-Small.png in Resources */,
-				D7D4B47E1C0172570045FC53 /* LaunchScreen.storyboard in Resources */,
-				CBBE14EF12F914B70065507D /* Icon-Small@2x.png in Resources */,
-				CBBE14F012F914B70065507D /* Icon.png in Resources */,
-				CBBE14F112F914B70065507D /* Icon@2x.png in Resources */,
-				CBBE14F212F914B70065507D /* iTunesArtwork in Resources */,
-				CBBE14F312F914B70065507D /* RemoveRegion.png in Resources */,
-				CBBE14F412F914B70065507D /* RemoveRegion@2x.png in Resources */,
-				D7D4B47B1C0172220045FC53 /* Default-568h@2x.png in Resources */,
-				CBBE14F812F916EC0065507D /* Default@2x.png in Resources */,
-				CBBF867312FB498900508BCE /* ReadMe.txt in Resources */,
+				E01AF0EB1B619146007A8B92 /* Launch.storyboard in Resources */,
+				E0282BE11B0AA1AC00DFB605 /* Main.storyboard in Resources */,
+				E0064A4C1B6051EF001EA236 /* AssetCatalog.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,10 +181,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7D4B4771C016AFB0045FC53 /* RegionsAppDelegate.swift in Sources */,
-				D7FA63CA1BF8E533008632FD /* RegionAnnotation.swift in Sources */,
-				D7D00D131BFA047B003E0FE6 /* RegionsViewController.swift in Sources */,
-				D7FA63CC1BF8E829008632FD /* RegionAnnotationView.swift in Sources */,
+				D7A140CB1CB1534B003CFD4B /* RegionAnnotation.swift in Sources */,
+				D7A140CE1CB1534B003CFD4B /* RegionsViewController.swift in Sources */,
+				D7A140CD1CB1534B003CFD4B /* RegionsAppDelegate.swift in Sources */,
+				D7A140CC1CB1534B003CFD4B /* RegionAnnotationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,30 +197,6 @@
 				CBA9F15C12F76264005BB61E /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		CBA9F16412F76264005BB61E /* MainWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CBA9F16512F76264005BB61E /* en */,
-			);
-			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		CBA9F16A12F76264005BB61E /* RegionsViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CBA9F16B12F76264005BB61E /* en */,
-			);
-			name = RegionsViewController.xib;
-			sourceTree = "<group>";
-		};
-		D7D4B47C1C0172570045FC53 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D7D4B47D1C0172570045FC53 /* en */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -293,7 +212,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -306,7 +225,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
@@ -316,13 +235,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Regions/Regions-Prefix.pch";
 				INFOPLIST_FILE = "Regions/Regions-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.samplecode.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -335,12 +257,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Regions/Regions-Prefix.pch";
 				INFOPLIST_FILE = "Regions/Regions-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.samplecode.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
