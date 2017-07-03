@@ -30,25 +30,25 @@ class RegionAnnotationView: MKPinAnnotationView {
         super.init(annotation: annotation, reuseIdentifier: annotation.title!)
         
         self.canShowCallout	= true
-        self.multipleTouchEnabled = false
-        self.draggable = true
+        self.isMultipleTouchEnabled = false
+        self.isDraggable = true
         self.animatesDrop = true
         self.map = nil
         theAnnotation = annotation
         if #available(iOS 9.0, *) {
-            self.pinTintColor = UIColor.purpleColor()
+            self.pinTintColor = UIColor.purple
         } else {
-            self.pinColor = MKPinAnnotationColor.Purple
+            self.pinColor = MKPinAnnotationColor.purple
         }
-        radiusOverlay = MKCircle(centerCoordinate: theAnnotation.coordinate, radius: theAnnotation.radius)
+        radiusOverlay = MKCircle(center: theAnnotation.coordinate, radius: theAnnotation.radius)
         
-        map?.addOverlay(radiusOverlay!) //### Never executed here...
+        map?.add(radiusOverlay!) //### Never executed here...
         
     }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
+//    
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -62,7 +62,7 @@ class RegionAnnotationView: MKPinAnnotationView {
                 let coord = circleOverlay.coordinate
                 
                 if coord.latitude == theAnnotation.coordinate.latitude && coord.longitude == theAnnotation.coordinate.longitude {
-                    map?.removeOverlay(overlay)
+                    map?.remove(overlay)
                 }
             }
         }
@@ -79,7 +79,7 @@ class RegionAnnotationView: MKPinAnnotationView {
             
             self.canShowCallout = false
             
-            map?.addOverlay(MKCircle(centerCoordinate: theAnnotation.coordinate, radius: theAnnotation.radius))
+            map?.add(MKCircle(center: theAnnotation.coordinate, radius: theAnnotation.radius))
             
             self.canShowCallout = true
         }

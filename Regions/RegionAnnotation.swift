@@ -50,12 +50,12 @@ class RegionAnnotation: NSObject, MKAnnotation {
     /*
     This method provides a custom setter so that the model is notified when the subtitle value has changed, which is derived from the radius.
     */
-    private func willSetRadius(newRadius: CLLocationDistance) {
-        self.willChangeValueForKey("subtitle")
+    private func willSetRadius(_ newRadius: CLLocationDistance) {
+        self.willChangeValue(forKey: "subtitle")
     }
     
-    private func didSetRadius(oldValue: CLLocationDistance) {
-        self.didChangeValueForKey("subtitle")
+    private func didSetRadius(_ oldValue: CLLocationDistance) {
+        self.didChangeValue(forKey: "subtitle")
     }
     
     
